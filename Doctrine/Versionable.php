@@ -1,6 +1,6 @@
 <?php
 
-namespace UKWM\Bundle\VersionableBundle\Doctrine\Event;
+namespace UKWM\Bundle\VersionableBundle\Doctrine;
 
 interface Versionable
 { }
