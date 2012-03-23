@@ -39,8 +39,12 @@ class Snapshot
      */
     private $id;
 
-    public function __construct()
+    public function __construct($entityClass = null, $entityId = null, $snapshot = null, $version = null)
     {
+        $this->entityClass = $entityClass;
+        $this->entityId = $entityId;
+        $this->snapshot = $snapshot;
+        $this->version = $version;
         $this->createdAt = new \DateTime();
     }
 
