@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UKWM\Bundle\VersionableBundle\Entity\Snapshot" table="snapshots">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    
+    <indexes>
+        <index name="snapshot_entity_class_idx" columns="entity_class"/>
+        <index name="snapshot_entity_id_idx" columns="entity_id"/>
+    </indexes>
+    
+    <unique-constraints>
+        <unique-constraint name="version_idx" columns="entity_class,entity_id,version"/>
+    </unique-constraints>
+    
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    
+    <field name="entityClass" type="string" column="entity_class"/>
+    <field name="entityId" type="integer" column="entity_id"/>
+    <field name="snapshot" type="array"/>
+    <field name="version" type="integer"/>
+    <field name="createdAt" type="datetime" column="created_at"/>
+    
+  </entity>
+</doctrine-mapping>
