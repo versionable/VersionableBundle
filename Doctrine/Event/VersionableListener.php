@@ -36,7 +36,7 @@ class VersionableListener implements EventSubscriber
         
         $resourceClass = $em->getClassMetaData('UKWM\Bundle\VersionableBundle\Entity\Snapshot');
         
-        foreach ($uwo->getScheduledEntityUpdates() as $entity) {
+        foreach ($unitOfWork->getScheduledEntityUpdates() as $entity) {
             if ($entity instanceof Versionable) {
                 $entityClass = $em->getClassMetadata(get_class($entity));
                 
@@ -54,17 +54,17 @@ class VersionableListener implements EventSubscriber
                 
                 $oldValues = array_map(function($changeSetField) {
                     return $changeSetField[0];
-                }, $uwo->getEntityChangeset($entity));
+                }, $unitOfWork->getEntityChangeset($entity));
                 
                 $entityVersion = $entityClass->reflFields[$entityClass->versionField]->getvalue($entity);
                 
                 unset($oldValues[$entityClass->versionField]);
-                unset($oldValues[$entityClass->getSingleIdentifierName()]);
+                unset($oldValues[$entityClass->getSingleIdentifierFieldName()]);
                 
                 $version = new Snapshot($entityClass->name, $entityId, $oldValues, $entityVersion);
                 
                 $em->persist($version);
-                $uow->computeChangeset($resourceClass, $version);
+                $unitOfWork->computeChangeset($resourceClass, $version);
             }
         }
     }
