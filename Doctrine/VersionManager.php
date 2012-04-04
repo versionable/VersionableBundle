@@ -1,6 +1,6 @@
 <?php
 
-namespace UKWM\VersionableBundle\Doctrine;
+namespace UKWM\Bundle\VersionableBundle\Doctrine;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -14,7 +14,7 @@ class VersionManager
     /**
      * @param EntityManager $em 
      */
-    public function _construct(EntityManager $em)
+    public function __construct(EntityManager $em)
     {
        $this->_em = $em; 
     }

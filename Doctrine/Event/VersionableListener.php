@@ -56,7 +56,7 @@ class VersionableListener implements EventSubscriber
                     return $changeSetField[0];
                 }, $unitOfWork->getEntityChangeset($entity));
                 
-                $entityVersion = $entityClass->reflFields[$entityClass->versionField]->getvalue($entity);
+                $entityVersion = $entityClass->reflFields[$entityClass->versionField]->getValue($entity);
                 
                 unset($oldValues[$entityClass->versionField]);
                 unset($oldValues[$entityClass->getSingleIdentifierFieldName()]);
