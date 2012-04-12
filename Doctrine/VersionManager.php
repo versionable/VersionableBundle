@@ -33,13 +33,13 @@ class VersionManager
         
         $query = $this->_em->createQuery(
             "SELECT v FROM UKWM\Bundle\VersionableBundle\Entity\Snapshot v INDEX BY v.version ".
-            "WHERE v.className = :entityClass AND v.entityId = :id ORDER BY v.version DESC");
+            "WHERE v.entityClass = :entityClass AND v.entityId = :id ORDER BY v.version DESC");
         $query->setParameter('entityClass', $className);
         $query->setParameter('id', $id);
         
         $versions = array();
         foreach ($query->getResult() as $version) {
-            $version[$version->getVersion()] = $version;
+            $versions[$version->getVersion()] = $version;
         }
         
         return $versions;
@@ -66,10 +66,6 @@ class VersionManager
         
         foreach ($version->getSnapshot() as $field => $value) {
             $class->reflFields[$field]->setValue($entity, $value);
-        }
-        
-        if ($class->changeTrackingPolicy == ClassMetadata::CHANGETRACKING_DEFERRED_EXPLICIT) {
-            $this->_em->persist($entity);
         }
     }
 }
