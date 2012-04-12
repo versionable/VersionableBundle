@@ -8,6 +8,6 @@ final class UnknownVersionException extends \InvalidargumentException
 {
     public function __construct($versionNumber, Versionable $entity)
     {
-        $this->message = sprintf('Version number %d for ""', $versionNumber, get_class($entity));
+        $this->message = sprintf('Unknown version number %d for "%s"', $versionNumber, get_class($entity));
     }
 }
