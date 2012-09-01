@@ -1,5 +1,5 @@
 {
-    "name": "ukwm/versionable-bundle",
+    "name": "recombu/versionable-bundle",
     "description": "Provides functionality like sluggable and versionable",
     "keywords": ["sluggable", "versionable"],
     "type": "symfony-bundle",
